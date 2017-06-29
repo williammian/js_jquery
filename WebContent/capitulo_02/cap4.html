@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+
+  <title>Capitulo 4</title>
+</head>
+<body>
+
+	<h1>Capitulo 4</h1>
+	
+	<table class="tabela">
+		<tr class="linha">
+			<td>Célula 0 0</td>
+			<td>Célula 0 1</td>
+			<td>Célula 0 2</td>
+		</tr>
+		<tr class="linha">
+			<td>Célula 1 0</td>
+			<td>Célula 1 1</td>
+			<td>Célula 1 2</td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript">
+		if (document.getElementsByClassName !== undefined) {
+			alert("getElementsByClassName found");
+		}
+		
+		function obtemResultados(){
+			var todosElementos = document.getElementsByTagName("*");
+			console.log(todosElementos.length);
+			var resultados = [];
+			var elemento;
+			for (var i = 0; (elemento = todosElementos[i]) != null; i++) {
+				console.log(i);
+				var elementoClass = elemento.className;
+				if (elementoClass && elementoClass.indexOf("linha") != -1) {
+					resultados.push(elemento);
+				}
+			}
+			return resultados;
+		}
+		
+		console.log(obtemResultados());
+		
+		function olaMundo() {
+			console.log("Ola");
+		}
+		olaMundo();
+		
+		var olaMundoAnonima = function() {
+			console.log("Serei executado =D");
+		}
+		olaMundoAnonima();
+		
+		function onDocumentLoad() {
+			var linhas = document.getElementsByClassName("linha");
+			for(var i = 0; i < linhas.length; i++) {
+				linhas[i].onclick = function() {
+					console.log("ok");
+				};
+			}
+		}
+		
+		window.onload = onDocumentLoad;
+		
+	</script>
+
+</body>
+</html>
