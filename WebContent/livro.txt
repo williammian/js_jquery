@@ -1,2 +1,2 @@
 Dominando JavaScript com JQuery
-7.8
+8
