@@ -51,4 +51,13 @@ $(function(){
 	
 	$("#estados").change(carregarComboCidades);
 	
+	function enviarFormulario(){
+		var estado = $("#estados :selected").text();
+		var cidade = $("#cidades :selected").text();
+		
+		alert("Estado: " + estado + "\nCidade: " + cidade);
+	}
+	
+	$("#form").submit(enviarFormulario);
+	
 });
