@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Capítulo 11</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+	var simples = { };
+		simples.nome = "Plínio";
+		simples.oi = function() {
+		console.log("Olá, " + this.nome + "!");
+	}
+	simples.oi();
+
+	var outro_simples = {
+		nome: "Plínio 2",
+		oi: function() {
+			console.log("Olá, " + this.nome + "!");
+		}
+	};
+	outro_simples.oi();
+	
+	//Criando objetos a partir de funções
+	function OlaSimples(seuNome) {
+		this.nome = seuNome;
+		this.oi = function() {
+			console.log("Olá, " + this.nome + "!");
+		}
+	}
+	
+	var simplesNovo = new OlaSimples("Plínio 3");
+	simplesNovo.oi();
+	
+	function OlaSimples2(seuNome) {
+		var nome = seuNome;
+		this.oi = function() {
+			console.log("Olá, " + nome + "!");
+		}
+	}
+	var simples2 = new OlaSimples2("Plínio 4");
+	simples2.oi();
+	
+	function Funcionario(nome, cargo, salario) {
+		this.nome = nome;
+		this.cargo = cargo;
+		this.salario = salario;
+	}
+		
+	var paulo = new Funcionario("Paulo", "Analista de sistemas", 5000);
+	var pedro = new Funcionario("Pedro", "Gerente de contas", 4500);
+	
+	console.log("O nome de paulo é " + paulo.nome);
+	console.log("O nome de pedro é " + pedro.nome);
+	
+	function FuncionarioNovo() {
+	};
+	
+	var jose = new FuncionarioNovo();
+	console.log(jose.nome, jose.cargo, jose.salario);
+	
+	FuncionarioNovo.prototype.nome = "<sem nome>";
+	FuncionarioNovo.prototype.cargo = "<sem cargo>";
+	FuncionarioNovo.prototype.salario = NaN;
+	
+	console.log(jose.nome, jose.cargo, jose.salario);
+	
+	var lista = ["vermelho", "marrom", "azul", "preto", "amarelo"];
+	
+	Array.prototype.capitalize = function() {
+		var resultado = new Array();
+		for(var pos = 0; pos < this.length; pos++) {
+			var primeiro = this[pos].slice(0, 1);
+			var resto = this[pos].substr(1);
+			
+			console.log(primeiro);
+			console.log(resto);
+			
+			resultado.push(primeiro.toUpperCase() + resto);
+		}
+		return resultado;
+	}
+	
+	lista = lista.capitalize();
+	
+	console.log(lista);
+	
+	function Animal() {
+		this.comer = function() {
+			console.log("Eu como");
+		};
+		this.respirar = function() {
+			console.log("Eu respiro");
+		};
+	}
+	var animal = new Animal();
+	animal.respirar();
+	
+	function Mamifero() {
+		this.mamar = function() {
+			console.log("Eu mamo");
+		}
+	}
+	
+	Mamifero.prototype = new Animal();
+	mamifero = new Mamifero();
+	mamifero.mamar();
+	mamifero.comer();
+	mamifero.respirar();
+	
+	function Gato() {
+		this.miar = function() {
+			console.log("Miau!");
+		}
+	}
+	Gato.prototype = new Mamifero();
+	
+	function Cachorro() {
+		this.latir = function() {
+			console.log("Au au!");
+		}
+		this.comer = function() {
+			console.log("Eu como ração");
+		}
+	}
+	Cachorro.prototype = new Mamifero();
+	
+	gato = new Gato();
+	gato.comer();
+	gato.respirar();
+	gato.mamar();
+	gato.miar();
+	
+	dog = new Cachorro();
+	dog.comer();
+	dog.respirar();
+	dog.mamar();
+	dog.latir();
+	
+	Object.prototype.includes = function (constructor) {
+		var objeto = new constructor();
+		for (var propriedade in objeto) {
+			if (objeto.hasOwnProperty(propriedade)) {
+				this.prototype[propriedade] = objeto[propriedade];
+			}
+		}
+	};
+	
+	function Peixe() {
+		this.respirar = function() {
+			console.log("Eu respiro embaixo d'água");
+		};
+	}
+	
+	function Nadador() {
+		this.nadar = function() {
+			console.log("Eu nado");
+		}
+	}
+	
+	Peixe.prototype = new Animal();
+	var peixe = new Peixe();
+	Peixe.includes(Nadador);
+	peixe.nadar();
+		
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capítulo 12</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+	var x = 1;
+	function variavelGlobal() {
+		console.log(x);
+	}
+	variavelGlobal();
+	
+	var x = 1;
+	function variavelLocal() {
+		var x = 99;
+		var y = 42
+		console.log(x, y);
+	}
+	variavelLocal();
+	console.log(x);
+	//console.log(y);
+	
+	var x = 1;
+	var y = 11;
+	function incremento(x) {
+		console.log("Dentro: ", x, y);
+		x++;
+		y++;
+		console.log("Dentro: ", x, y);
+	}
+	incremento(x);
+	
+	console.log("Fora: ", x, y);
+	
+	function counter() {
+		var z = 0;
+		return function() {
+			return ++z;
+		}
+	}
+	var count = counter();
+	console.log(count());
+	console.log(count());
+	console.log(count());
+	console.log(count());
+	//console.log(z);
+	
+	function hey(texto) {
+		return function(nome) {
+			console.log(texto + ", " + nome);
+		}
+	}
+	var bomDia = hey("Bom dia");
+	bomDia("João");
+	bomDia("José");
+	bomDia("Nicolau");
+
+</script>
+
+</body>
+</html>
